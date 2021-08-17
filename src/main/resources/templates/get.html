@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Add page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+            <svg class="bi me-2" width="40" height="32"></svg>
+            <span class="fs-4">Найти запись</span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Список заказов</a></li>
+            <li class="nav-item"><a href="/" class="nav-link">Главная страница</a></li>
+        </ul>
+    </header>
+    <div class="px-3">
+        <form method="post" action="/get">
+            <div class="row g-3">
+                <div class="col-6">
+                    <label for="key" class="form-label">Введите текстовый ключ</label>
+                    <input type="text" class="form-control mb-4" id="key" name="key" placeholder="" value=""
+                           required="">
+                </div>
+            </div>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button class="btn btn-primary btn-lg px-4 gap-3" type="submit">Найти</button>
+            </div>
+        </form>
+    </div>
+    <div class="container">
+        <p th:text="${attributes}"/>
+    </div>
+
+</div>
+</body>
+</html>

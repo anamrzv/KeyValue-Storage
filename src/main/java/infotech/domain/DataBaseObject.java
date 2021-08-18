@@ -1,10 +1,17 @@
 package infotech.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "OBJECTS")
 public class DataBaseObject {
@@ -14,7 +21,11 @@ public class DataBaseObject {
     @Column
     private String attributes;
     @Column
-    private Integer ttl;
+    private LocalTime ttl;
+    @Column(name = "creation_datetime")
+    private LocalDateTime creationDateTime;
+    @Column(name = "delete_datetime")
+    private LocalDateTime deleteDateTime;
 
     public static class Builder{
         private DataBaseObject dbObject;
@@ -32,5 +43,30 @@ public class DataBaseObject {
             dbObject.setAttributes(attributes);
             return this;
         }
+
+        public Builder withTTL(String time){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            dbObject.setTtl(LocalTime.parse(time, formatter));
+            //dbObject.setTtl(time);
+            return this;
+        }
+
+        public Builder withCreationTime(LocalDateTime date){
+            dbObject.setCreationDateTime(date);
+            return this;
+        }
+
+        public Builder withDeleteTime(){
+            LocalDateTime creation = dbObject.getCreationDateTime();
+            LocalTime timeToLive = dbObject.getTtl();
+            LocalDateTime deleteTime = creation.plusMinutes(timeToLive.getMinute()).plusHours(timeToLive.getHour());
+            dbObject.setDeleteDateTime(deleteTime);
+            return this;
+        }
+
+        public DataBaseObject build(){
+            return dbObject;
+        }
     }
+
 }

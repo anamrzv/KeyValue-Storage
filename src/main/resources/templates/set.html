@@ -19,7 +19,7 @@
         </ul>
     </header>
     <div class="px-3">
-        <form method="post" action="/get">
+        <form method="post" action="/set">
             <div class="row g-3">
                 <div class="col-6">
                     <label for="key" class="form-label">Введите текстовый ключ</label>
@@ -32,8 +32,8 @@
                            required="">
                 </div>
                 <div class="col-6">
-                    <label for="ttl" class="form-label">Введите время (в формате чч:мм), по истечении которго запись должна удалиться.(Опционально. По умолчанию значение равно 24 часа.) </label>
-                    <input type="time" class="form-control mb-4" id="ttl" name="time" placeholder="" value="24:00"
+                    <label for="ttl" class="form-label">Введите время (в формате чч:мм), по истечении которго запись должна удалиться.(Опционально. По умолчанию значение равно 10 минут.) </label>
+                    <input type="time" class="form-control mb-4" id="ttl" name="ttl" placeholder="" value="00:10"
                            required="false">
                 </div>
             </div>

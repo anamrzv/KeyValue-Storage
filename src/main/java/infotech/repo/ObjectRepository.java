@@ -12,6 +12,7 @@ public interface ObjectRepository extends CrudRepository<DataBaseObject, Long> {
     @Query(value = "select * from objects where key=:key", nativeQuery = true)
     DataBaseObject findByKey(@Param("key") String key);
 
-    @Query(value = "SELECT * FROM OBJECTS", nativeQuery = true)
-    public LinkedList<DataBaseObject> getListOfObjects();
+    @Query(value = "select * from objects", nativeQuery = true)
+    LinkedList<DataBaseObject> getListOfObjects();
+
 }

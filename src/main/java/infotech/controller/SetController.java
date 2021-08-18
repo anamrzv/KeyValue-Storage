@@ -25,14 +25,27 @@ public class SetController {
 
     @PostMapping("/set")
     public String setNewObject(@RequestParam String key, @RequestParam String attributes, @RequestParam String ttl, Model model){
-        DataBaseObject newObject = new DataBaseObject.Builder()
+        String answerForHTML;
+        DataBaseObject newObject;
+        DataBaseObject.Builder builder = new DataBaseObject.Builder()
                 .withKey(key)
                 .withAttributes(attributes)
-                .withTTL(ttl)
-                .withCreationTime(LocalDateTime.now())
-                .withDeleteTime()
-                .build();
+                .withTTL(ttl);
+        if (!objectRepository.existsByKey(key)) {
+             newObject = builder
+                    .withCreationTime(LocalDateTime.now())
+                    .withDeleteTime()
+                    .build();
+             answerForHTML = "Запись успешно добавлена:\nКлюч: "+key+" Данные: "+attributes+" Запись удалится: "+newObject.getDeleteDateTimeAsString();
+        } else {
+            newObject = builder
+                    .withCreationTime(objectRepository.getTimestampByKey(key).toLocalDateTime())
+                    .withDeleteTime()
+                    .build();
+            answerForHTML = "Запись по ключу "+key+" успешно обновлена. Обновленная запись:\nКлюч: "+key+" Данные: "+attributes+" Запись удалится: "+newObject.getDeleteDateTimeAsString();
+        }
         objectRepository.save(newObject);
-        return "redirect:/get";
+        model.addAttribute("answer", answerForHTML);
+        return "set";
     }
 }

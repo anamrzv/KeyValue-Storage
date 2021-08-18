@@ -18,7 +18,7 @@
             <li class="nav-item"><a href="/" class="nav-link">Главная страница</a></li>
         </ul>
     </header>
-    <div class="px-3">
+    <div class="px-3 mb-3">
         <form method="post" action="/set">
             <div class="row g-3">
                 <div class="col-6">
@@ -41,6 +41,9 @@
                 <button class="btn btn-primary btn-lg px-4 gap-3" type="submit">Добавить</button>
             </div>
         </form>
+    </div>
+    <div class="container">
+        <p th:text="${answer}"/>
     </div>
 
 </div>

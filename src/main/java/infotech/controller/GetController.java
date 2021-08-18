@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-
 @Controller
 public class GetController {
 
@@ -25,7 +22,7 @@ public class GetController {
 
     @PostMapping("/get")
     public String getValue(@RequestParam String key, Model model) {
-        String answer = null;
+        String answer;
         DataBaseObject dataBaseObject = objectRepository.findByKey(key);
         if (dataBaseObject==null) answer = "Запись с таким ключом не найдена";
         else {

@@ -69,4 +69,9 @@ public class DataBaseObject {
         }
     }
 
+    public String getDeleteDateTimeAsString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy числа в HH:mm");
+        return deleteDateTime.format(formatter);
+    }
+
 }

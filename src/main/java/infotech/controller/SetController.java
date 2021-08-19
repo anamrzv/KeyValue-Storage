@@ -26,6 +26,7 @@ public class SetController {
     @PostMapping("/set")
     public String setNewObject(@RequestParam String key, @RequestParam String attributes, @RequestParam String ttl, Model model){
         String answerForHTML;
+        String commentForHTML;
         DataBaseObject newObject;
         DataBaseObject.Builder builder = new DataBaseObject.Builder()
                 .withKey(key)
@@ -36,16 +37,20 @@ public class SetController {
                     .withCreationTime(LocalDateTime.now())
                     .withDeleteTime()
                     .build();
-             answerForHTML = "Запись успешно добавлена:\nКлюч: "+key+" Данные: "+attributes+" Запись удалится: "+newObject.getDeleteDateTimeAsString();
+             answerForHTML = "Запись успешно добавлена:";
+             commentForHTML = "Ключ: "+key+" Данные: "+attributes+" Запись удалится: "+newObject.getDeleteDateTimeAsString();
         } else {
             newObject = builder
                     .withCreationTime(objectRepository.getTimestampByKey(key).toLocalDateTime())
                     .withDeleteTime()
                     .build();
-            answerForHTML = "Запись по ключу "+key+" успешно обновлена. Обновленная запись:\nКлюч: "+key+" Данные: "+attributes+" Запись удалится: "+newObject.getDeleteDateTimeAsString();
+            answerForHTML = "Запись по ключу "+key+" успешно обновлена. Обновленная запись:";
+            commentForHTML = "Ключ: "+key+" Данные: "+attributes+" Запись удалится: "+newObject.getDeleteDateTimeAsString();
         }
         objectRepository.save(newObject);
+        if (!objectRepository.existsByKey(key)) answerForHTML = "Ошибка. Запись не добавлена.";
         model.addAttribute("answer", answerForHTML);
+        model.addAttribute("comment", commentForHTML);
         return "set";
     }
 }

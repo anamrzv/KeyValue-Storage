@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Добавить запись</title>
+    <title>Удалить запись</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -10,7 +10,7 @@
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32"></svg>
-            <span class="fs-4">Добавить запись</span>
+            <span class="fs-4">Удалить запись</span>
         </a>
 
         <ul class="nav nav-pills">
@@ -18,26 +18,16 @@
         </ul>
     </header>
     <div class="px-3 mb-3">
-        <form method="post" action="/set">
+        <form method="post" action="/remove">
             <div class="row g-3">
                 <div class="col-6">
                     <label for="key" class="form-label">Введите текстовый ключ</label>
                     <input type="text" class="form-control mb-4" id="key" name="key" placeholder="" value=""
                            required="">
                 </div>
-                <div class="col-6">
-                    <label for="attributes" class="form-label">Введите данные</label>
-                    <input type="text" class="form-control mb-4" id="attributes" name="attributes" placeholder="" value=""
-                           required="">
-                </div>
-                <div class="col-6">
-                    <label for="ttl" class="form-label">Введите время (в формате чч:мм), по истечении которго запись должна удалиться.(Опционально. По умолчанию значение равно 10 минут.) </label>
-                    <input type="time" class="form-control mb-4" id="ttl" name="ttl" placeholder="" value="00:10"
-                           required="false">
-                </div>
             </div>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button class="btn btn-primary btn-lg px-4 gap-3" type="submit">Добавить</button>
+                <button class="btn btn-primary btn-lg px-4 gap-3" type="submit">Удалить</button>
             </div>
         </form>
     </div>
@@ -45,6 +35,7 @@
         <p class="mb-1" th:text="${answer}"/>
         <p th:text="${comment}"/>
     </div>
+
 </div>
 </body>
 </html>

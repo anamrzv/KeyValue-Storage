@@ -21,4 +21,5 @@ public interface ObjectRepository extends CrudRepository<DataBaseObject, Long> {
 
     @Query(value = "select creation_datetime from objects where key=:key", nativeQuery = true)
     Timestamp getTimestampByKey(@Param("key") String key);
+
 }

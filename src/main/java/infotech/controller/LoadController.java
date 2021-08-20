@@ -53,11 +53,10 @@ public class LoadController {
                     answerForHTML = "Проверьте, что в файле заполнены все обязательные поля.";
                     formErrorMsg(num, jsonLine);
                     break;
-                }
-                else newObjects.add(objectFromFile);
+                } else newObjects.add(objectFromFile);
                 jsonLine = br.readLine();
             }
-            if (answerForHTML.isEmpty()){
+            if (answerForHTML.isEmpty()) {
                 objectRepository.deleteAll();
                 objectRepository.saveAll(newObjects);
                 answerForHTML = "Хранилище успешно заполнено данными из файла";

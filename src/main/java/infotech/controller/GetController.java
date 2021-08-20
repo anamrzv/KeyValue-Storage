@@ -24,7 +24,7 @@ public class GetController {
     public String getValue(@RequestParam String key, Model model) {
         String answer;
         DataBaseObject dataBaseObject = objectRepository.findByKey(key);
-        if (dataBaseObject==null) answer = "Запись с таким ключом не найдена";
+        if (dataBaseObject == null) answer = "Запись с таким ключом не найдена";
         else {
             answer = dataBaseObject.getAttributes();
             if (answer == null) answer = "По этому ключу находится пустая запись";

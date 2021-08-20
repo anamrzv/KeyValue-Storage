@@ -19,7 +19,7 @@ public class SetController {
     ObjectRepository objectRepository;
 
     @GetMapping("/set")
-    public String showSetPage(Model model){
+    public String showSetPage(){
         return "/set";
     }
 

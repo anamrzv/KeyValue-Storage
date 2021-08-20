@@ -1,5 +1,7 @@
 package infotech.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -69,6 +71,7 @@ public class DataBaseObject {
         }
     }
 
+    @JsonIgnore
     public String getDeleteDateTimeAsString(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy числа в HH:mm");
         return deleteDateTime.format(formatter);

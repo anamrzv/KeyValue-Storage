@@ -51,7 +51,6 @@ public class DataBaseObject {
         public Builder withTTL(String time) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
             dbObject.setTtl(LocalTime.parse(time, formatter));
-            //dbObject.setTtl(time);
             return this;
         }
 

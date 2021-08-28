@@ -37,17 +37,15 @@ public class SetController {
                     .withDeleteTime()
                     .build();
             answerForHTML = "Запись успешно добавлена:";
-            commentForHTML = "Ключ: " + key + " Данные: " + attributes + " Запись удалится: " + newObject.getDeleteDateTimeAsString();
         } else {
             newObject = builder
                     .withCreationTime(objectRepository.getTimestampByKey(key).toLocalDateTime())
                     .withDeleteTime()
                     .build();
             answerForHTML = "Запись по ключу " + key + " успешно обновлена. Обновленная запись:";
-            commentForHTML = "Ключ: " + key + " Данные: " + attributes + " Запись удалится: " + newObject.getDeleteDateTimeAsString();
         }
+        commentForHTML = "Ключ: " + key + " Данные: " + attributes + " Запись удалится: " + newObject.getDeleteDateTimeAsString();
         objectRepository.save(newObject);
-        if (!objectRepository.existsByKey(key)) answerForHTML = "Ошибка. Запись не добавлена.";
         model.addAttribute("answer", answerForHTML);
         model.addAttribute("comment", commentForHTML);
         return "set";

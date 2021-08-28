@@ -14,6 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -30,6 +32,8 @@ public class GetControllerTest {
                 .withKey("TEST")
                 .withAttributes("test")
                 .withTTL("00:10")
+                .withCreationTime(LocalDateTime.now())
+                .withDeleteTime()
                 .build();
 
         Mockito.when(repository.findByKey(testObject.getKey()))

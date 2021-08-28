@@ -25,8 +25,8 @@ public class LoadController {
     private String answerForHTML = "";
     private String errorNum = "";
     private String errorRow = "";
-    private String jsonLine;
-    private int num;
+    private String currentJsonLine;
+    private int currentNumOfLine;
 
     @GetMapping("/load")
     public String showLoadPage() {
@@ -45,16 +45,16 @@ public class LoadController {
         }
         try (BufferedReader br = new BufferedReader(new FileReader(fileFromHTML))) {
             LinkedList<DataBaseObject> newObjects = new LinkedList<>();
-            jsonLine = br.readLine();
-            while (jsonLine != null) {
-                num += 1;
-                DataBaseObject objectFromFile = OBJECT_MAPPER.readValue(jsonLine, DataBaseObject.class);
+            currentJsonLine = br.readLine();
+            while (currentJsonLine != null) {
+                currentNumOfLine += 1;
+                DataBaseObject objectFromFile = OBJECT_MAPPER.readValue(currentJsonLine, DataBaseObject.class);
                 if (objectFromFile.getKey() == null || objectFromFile.getAttributes() == null || objectFromFile.getTtl() == null || objectFromFile.getCreationDateTime() == null || objectFromFile.getDeleteDateTime() == null) {
                     answerForHTML = "Проверьте, что в файле заполнены все обязательные поля.";
-                    formErrorMsg(num, jsonLine);
+                    formErrorMsg(currentNumOfLine, currentJsonLine);
                     break;
                 } else newObjects.add(objectFromFile);
-                jsonLine = br.readLine();
+                currentJsonLine = br.readLine();
             }
             if (answerForHTML.isEmpty()) {
                 objectRepository.deleteAll();
@@ -62,7 +62,7 @@ public class LoadController {
                 answerForHTML = "Хранилище успешно заполнено данными из файла";
             }
         } catch (JacksonException e) {
-            formErrorMsg(num, jsonLine);
+            formErrorMsg(currentNumOfLine, currentJsonLine);
             answerForHTML = "В файле найдена ошибка. Проверьте формат файла (все строки должны быть в формате json), дат и времени. Обновите файл и запустите команду снова";
             e.printStackTrace();
         } catch (Exception e) {

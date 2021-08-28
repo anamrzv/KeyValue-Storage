@@ -22,7 +22,7 @@ public class SetControllerTest {
     private MockMvc mvc;
 
     @Test
-    public void testAddingObject() throws Exception {
+    public void whenAllParamsAreCorrect_thenObjectShouldBeAdded() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/set")
                 .param("key","TEST")
                 .param("attributes","test")

@@ -32,7 +32,7 @@ public class DataBaseObject {
     private LocalDateTime deleteDateTime;
 
     public static class Builder {
-        private DataBaseObject dbObject;
+        private final DataBaseObject dbObject;
 
         public Builder() {
             dbObject = new DataBaseObject();

@@ -35,11 +35,9 @@ public class LoadController {
 
     @PostMapping("/load")
     public String loadStateFromFile(@RequestParam("inputFile") MultipartFile inputFile, Model model) {
-        File fileFromHTML = new File("src/main/resources/fileWithState.txt");
+        File fileFromHTML = new File("fileWithState.txt");
         try (OutputStream os = new FileOutputStream(fileFromHTML)) {
             os.write(inputFile.getBytes());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -22,7 +22,7 @@ public class RemoveController {
 
     @PostMapping("/remove")
     public String removeObject(@RequestParam String key, Model model) {
-        String answerForHTML = "";
+        String answerForHTML;
         String commentForHTML = "";
         if (!objectRepository.existsByKey(key)) answerForHTML = "Записи с таким ключом не существует.";
         else {

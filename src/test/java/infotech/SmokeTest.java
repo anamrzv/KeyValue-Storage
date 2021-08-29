@@ -23,7 +23,7 @@ public class SmokeTest {
     SetController setController;
 
     @Test
-    public void contextLoads() throws Exception {
+    public void contextLoads() {
         assertThat(dumpController).isNotNull();
         assertThat(getController).isNotNull();
         assertThat(loadController).isNotNull();

@@ -30,7 +30,7 @@ public class DumpController {
     @GetMapping(value = "/dump")
     public String showSetPage(Model model) {
         model.addAttribute("time", new SimpleDateFormat("HH:mm:ss").format(new Date()));
-        return "/dump";
+        return "dump";
     }
 
     @GetMapping(value = "/state-{time}",
@@ -38,7 +38,7 @@ public class DumpController {
     public @ResponseBody
     byte[] returnFile(@PathVariable(value = "time") String date) throws IOException {
         fillFileWithCurrentData();
-        File file = new File("src/main/resources/data.txt");
+        File file = new File("data.txt");
         FileInputStream in = new FileInputStream(file);
         byte[] arr = new byte[(int) file.length()];
         in.read(arr);
@@ -48,7 +48,7 @@ public class DumpController {
 
     private void fillFileWithCurrentData() {
         try {
-            File toReturnFile = new File("src/main/resources/data.txt");
+            File toReturnFile = new File("data.txt");
             PrintWriter writer = new PrintWriter(toReturnFile);
 
             LinkedList<DataBaseObject> objects = objectRepository.getListOfObjects();

@@ -28,5 +28,4 @@ public interface ObjectRepository extends CrudRepository<DataBaseObject, Long> {
     @Modifying
     @Query(value = "delete from objects where delete_datetime<=current_timestamp", nativeQuery = true)
     void deleteAllDeadRows();
-
 }

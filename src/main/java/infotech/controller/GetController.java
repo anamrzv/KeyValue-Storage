@@ -16,7 +16,7 @@ public class GetController {
     private ObjectRepository objectRepository;
 
     @GetMapping("/get")
-    public String showGetPage(Model model) {
+    public String showGetPage() {
         return "get";
     }
 

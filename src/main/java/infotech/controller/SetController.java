@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 
@@ -19,7 +20,7 @@ public class SetController {
 
     @GetMapping("/set")
     public String showSetPage() {
-        return "/set";
+        return "set";
     }
 
     @PostMapping("/set")

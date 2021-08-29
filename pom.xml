@@ -131,7 +131,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>WebServiceApplication</mainClass>
+                            <mainClass>infotech.WebServiceApplication</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -149,6 +149,11 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 
 </project>

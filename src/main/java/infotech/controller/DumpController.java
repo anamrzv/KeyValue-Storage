@@ -40,7 +40,7 @@ public class DumpController {
         fillFileWithCurrentData();
         File file = new File("src/main/resources/data.txt");
         FileInputStream in = new FileInputStream(file);
-        byte[] arr = new byte[(int)file.length()];
+        byte[] arr = new byte[(int) file.length()];
         in.read(arr);
         in.close();
         return arr;

@@ -23,8 +23,6 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertThat;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -47,7 +45,7 @@ public class DumpControllerTest {
                 .withDeleteTime()
                 .build();
 
-        LinkedList<DataBaseObject> list = new LinkedList<> ();
+        LinkedList<DataBaseObject> list = new LinkedList<>();
         list.add(testObject);
 
         Mockito.when(repository.getListOfObjects())
@@ -55,7 +53,7 @@ public class DumpControllerTest {
     }
 
     @Test
-    public void shouldReturnFile() throws Exception{
+    public void shouldReturnFile() throws Exception {
         ObjectMapper OBJECT_MAPPER = new ObjectMapper().findAndRegisterModules().configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/state-{time}", "21:21:21"))
@@ -72,7 +70,7 @@ public class DumpControllerTest {
         writer.close();
 
         FileInputStream in = new FileInputStream(expectedFile);
-        byte[] expectedResponse = new byte[(int)expectedFile.length()];
+        byte[] expectedResponse = new byte[(int) expectedFile.length()];
         in.read(expectedResponse);
         in.close();
 
